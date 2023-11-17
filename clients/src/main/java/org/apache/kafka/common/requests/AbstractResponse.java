@@ -101,9 +101,9 @@ public abstract class AbstractResponse implements AbstractRequestResponse {
 
         if (requestHeader.correlationId() != responseHeader.correlationId()) {
             throw new CorrelationIdMismatchException("Correlation id for response ("
-                + responseHeader.correlationId() + ") does not match request ("
-                + requestHeader.correlationId() + "), request header: " + requestHeader,
-                requestHeader.correlationId(), responseHeader.correlationId());
+                    + responseHeader.correlationId() + ") does not match request ("
+                    + requestHeader.correlationId() + "), request header: " + requestHeader,
+                    requestHeader.correlationId(), responseHeader.correlationId());
         }
 
         return AbstractResponse.parseResponse(apiKey, buffer, apiVersion);
@@ -259,6 +259,8 @@ public abstract class AbstractResponse implements AbstractRequestResponse {
                 return PushTelemetryResponse.parse(responseBuffer, version);
             case ASSIGN_REPLICAS_TO_DIRS:
                 return AssignReplicasToDirsResponse.parse(responseBuffer, version);
+            case CONSUMER_GROUP_PREPARE_ASSIGNMENT:
+                return ConsumerGroupPrepareAssignmentResponse.parse(responseBuffer, version);
             default:
                 throw new AssertionError(String.format("ApiKey %s is not currently handled in `parseResponse`, the " +
                         "code should be updated to do so.", apiKey));

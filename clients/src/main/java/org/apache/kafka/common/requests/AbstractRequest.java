@@ -322,6 +322,8 @@ public abstract class AbstractRequest implements AbstractRequestResponse {
                 return PushTelemetryRequest.parse(buffer, apiVersion);
             case ASSIGN_REPLICAS_TO_DIRS:
                 return AssignReplicasToDirsRequest.parse(buffer, apiVersion);
+            case CONSUMER_GROUP_PREPARE_ASSIGNMENT:
+                return ConsumerGroupPrepareAssignmentRequest.parse(buffer, apiVersion);
             default:
                 throw new AssertionError(String.format("ApiKey %s is not currently handled in `parseRequest`, the " +
                         "code should be updated to do so.", apiKey));

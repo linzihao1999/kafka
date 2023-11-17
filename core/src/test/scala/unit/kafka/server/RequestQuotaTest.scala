@@ -722,6 +722,9 @@ class RequestQuotaTest extends BaseRequestTest {
         case ApiKeys.ASSIGN_REPLICAS_TO_DIRS =>
           new AssignReplicasToDirsRequest.Builder(new AssignReplicasToDirsRequestData())
 
+        case ApiKeys.CONSUMER_GROUP_PREPARE_ASSIGNMENT =>
+          new ConsumerGroupPrepareAssignmentRequest.Builder(new ConsumerGroupPrepareAssignmentRequestData(), true)
+
         case _ =>
           throw new IllegalArgumentException("Unsupported API key " + apiKey)
     }
